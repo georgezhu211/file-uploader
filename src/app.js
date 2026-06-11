@@ -8,6 +8,7 @@ const { PrismaSessionStore } = require("@quixo3/prisma-session-store");
 const { prisma } = require("./db/prisma");
 
 const authRoutes = require("./routes/auth.routes");
+const folderRoutes = require("./routes/folder.routes");
 
 const app = express();
 
@@ -37,6 +38,7 @@ app.get("/", (req, res) => {
 });
 
 app.use("/auth", authRoutes);
+app.use("/folders", folderRoutes);
 
 const PORT = 3000;
 app.listen(PORT, (error) => {

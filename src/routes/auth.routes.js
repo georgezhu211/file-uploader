@@ -6,4 +6,6 @@ const router = Router();
 
 router.get("/signup", controller.getSignup);
 
+router.post("/signup", controller.postSignup);
+
 module.exports = router;

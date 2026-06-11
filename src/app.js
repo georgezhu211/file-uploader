@@ -2,6 +2,8 @@ require("dotenv/config");
 
 const express = require("express");
 const path = require("node:path");
+const session = require("express-session");
+const passport = require("./config/passport");
 
 const authRoutes = require("./routes/auth.routes");
 
@@ -12,7 +14,18 @@ app.set("view engine", "ejs");
 
 app.use(express.urlencoded({ extended: false }));
 
-app.get("/", (req, res) => res.send("Hello, world!"));
+app.use(
+  session({
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: false,
+  }),
+);
+app.use(passport.session());
+
+app.get("/", (req, res) => {
+  res.render("index", { user: req.user });
+});
 
 app.use("/auth", authRoutes);
 

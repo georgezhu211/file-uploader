@@ -26,3 +26,9 @@ exports.update = async (id, { name }) => {
 
   return folder;
 };
+
+exports.delete = async (id) => {
+  const folder = await prisma.folder.delete({ where: { id } });
+
+  return folder;
+};

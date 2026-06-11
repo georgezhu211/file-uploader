@@ -37,3 +37,9 @@ exports.update = async (req, res) => {
 
   res.redirect(`/folders`);
 };
+
+exports.delete = async (req, res) => {
+  await folderRepository.delete(Number(req.params.id));
+
+  res.redirect(`/folders`);
+};

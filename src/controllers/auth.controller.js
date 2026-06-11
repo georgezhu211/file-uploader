@@ -25,3 +25,10 @@ exports.postLogin = passport.authenticate("local", {
   failureRedirect: "/auth/login",
   failureMessage: true,
 });
+
+exports.logout = (req, res, next) => {
+  req.logout((err) => {
+    if (err) return next(err);
+    res.redirect("/");
+  });
+};

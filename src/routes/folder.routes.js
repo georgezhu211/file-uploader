@@ -15,4 +15,8 @@ router.post("/", controller.create);
 
 router.get("/:id", controller.show);
 
+router.get("/:id/edit", controller.edit);
+
+router.put("/:id", controller.update);
+
 module.exports = router;

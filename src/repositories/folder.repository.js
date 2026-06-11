@@ -7,13 +7,22 @@ exports.create = async ({ name, userId }) => {
 };
 
 exports.findAllByUserId = async (userId) => {
-  const folders = await prisma.folder.findMany({ where: { userId } });
+  const folders = await prisma.folder.findMany({
+    where: { userId },
+    orderBy: { id: "asc" },
+  });
 
   return folders;
 };
 
 exports.findById = async (id) => {
   const folder = await prisma.folder.findUnique({ where: { id } });
+
+  return folder;
+};
+
+exports.update = async (id, { name }) => {
+  const folder = await prisma.folder.update({ where: { id }, data: { name } });
 
   return folder;
 };

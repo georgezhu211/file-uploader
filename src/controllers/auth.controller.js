@@ -9,3 +9,7 @@ exports.postSignup = async (req, res) => {
 
   res.send(user);
 };
+
+exports.getLogin = (req, res) => {
+  res.render("auth/login");
+};

@@ -16,7 +16,10 @@ exports.findAllByUserId = async (userId) => {
 };
 
 exports.findById = async (id) => {
-  const folder = await prisma.folder.findUnique({ where: { id } });
+  const folder = await prisma.folder.findUnique({
+    where: { id },
+    include: { files: true },
+  });
 
   return folder;
 };

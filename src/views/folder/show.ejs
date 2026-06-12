@@ -8,6 +8,26 @@
   <body>
     <h1>Folder</h1>
     <p>ID: <%= folder.id %>, Name: <%= folder.name %></p>
+    <h2>Files</h2>
+    <% if (folder.files.length > 0) { %>
+      <ul>
+        <% for (const file of folder.files) { %>
+          <li><%= file.name %> (<%= file.mimetype %>, <%= file.size %> bytes)</li>
+        <% } %>
+      </ul>
+    <% } else { %>
+      <p>No files yet.</p>
+    <% } %>
+
+    <form
+      action="/files/upload/<%= folder.id %>"
+      method="POST"
+      enctype="multipart/form-data"
+    >
+      <label for="file">File</label>
+      <input id="file" name="file" type="file" />
+      <button type="submit">Upload</button>
+    </form>
     <form
       action="/folders/<%= folder.id %>?_method=DELETE"
       method="POST"

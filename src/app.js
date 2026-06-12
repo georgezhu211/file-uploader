@@ -10,6 +10,7 @@ const methodOverride = require("method-override");
 
 const authRoutes = require("./routes/auth.routes");
 const folderRoutes = require("./routes/folder.routes");
+const fileRoutes = require("./routes/file.routes");
 
 const app = express();
 
@@ -41,6 +42,7 @@ app.get("/", (req, res) => {
 
 app.use("/auth", authRoutes);
 app.use("/folders", folderRoutes);
+app.use("/files", fileRoutes);
 
 const PORT = 3000;
 app.listen(PORT, (error) => {

@@ -5,3 +5,9 @@ exports.create = async (data) => {
 
   return file;
 };
+
+exports.findById = async (id) => {
+  const file = await prisma.file.findUnique({ where: { id } });
+
+  return file;
+};

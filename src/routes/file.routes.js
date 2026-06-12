@@ -10,4 +10,6 @@ router.use(isAuthenticated);
 
 router.post("/upload/:folderId", upload.single("file"), controller.upload);
 
+router.get("/:id", controller.show);
+
 module.exports = router;

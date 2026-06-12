@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= file.name %></title>
+  </head>
+  <body>
+    <h1><%= file.name %></h1>
+    <p>Type: <%= file.mimetype %></p>
+    <p>Size: <%= (file.size / 1024).toFixed(1) %> KB</p>
+    <p>Uploaded: <%= new Date(file.createdAt).toLocaleString() %></p>
+    <a href="/files/<%= file.id %>/download"><button>Download</button></a>
+    <br /><br />
+    <a href="/folders/<%= file.folderId %>">← Back to folder</a>
+  </body>
+</html>

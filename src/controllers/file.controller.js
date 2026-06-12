@@ -15,3 +15,9 @@ exports.upload = async (req, res) => {
 
   res.redirect(`/folders/${folderId}`);
 };
+
+exports.show = async (req, res) => {
+  const file = await fileRepository.findById(Number(req.params.id));
+
+  res.render("file/show", { file });
+};

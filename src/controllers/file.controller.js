@@ -1,15 +1,24 @@
+const https = require("https");
 const fileRepository = require("../repositories/file.repository");
+const cloudinary = require("../config/cloudinary");
 
 exports.upload = async (req, res) => {
   const folderId = Number(req.params.folderId);
-  const { originalname, filename, mimetype, size, path } = req.file;
+  const { originalname, mimetype, size } = req.file;
+
+  const result = await cloudinary.uploader.upload(
+    `data:${req.file.mimetype};base64,${req.file.buffer.toString("base64")}`,
+    {
+      folder: "uploads",
+    },
+  );
 
   const file = await fileRepository.create({
     name: originalname,
-    filename,
     mimetype,
     size,
-    path,
+    publicId: result.public_id,
+    url: result.secure_url,
     folderId,
   });
 
@@ -22,8 +31,17 @@ exports.show = async (req, res) => {
   res.render("file/show", { file });
 };
 
-exports.download = async (req, res) => {
+exports.download = async (req, res, next) => {
   const file = await fileRepository.findById(Number(req.params.id));
 
-  res.download(file.path, file.name);
+  https
+    .get(file.url, (fileStream) => {
+      res.setHeader(
+        "Content-Disposition",
+        `attachment; filename="${file.name}"`,
+      );
+      res.setHeader("Content-Type", file.mimetype);
+      fileStream.pipe(res);
+    })
+    .on("error", next);
 };

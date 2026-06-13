@@ -44,6 +44,11 @@ app.use("/auth", authRoutes);
 app.use("/folders", folderRoutes);
 app.use("/files", fileRoutes);
 
+app.use((err, req, res, next) => {
+  console.error(err);
+  res.status(500).send(err.message);
+});
+
 const PORT = 3000;
 app.listen(PORT, (error) => {
   if (error) {

@@ -21,3 +21,9 @@ exports.show = async (req, res) => {
 
   res.render("file/show", { file });
 };
+
+exports.download = async (req, res) => {
+  const file = await fileRepository.findById(Number(req.params.id));
+
+  res.download(file.path, file.name);
+};

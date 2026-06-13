@@ -12,4 +12,6 @@ router.post("/upload/:folderId", upload.single("file"), controller.upload);
 
 router.get("/:id", controller.show);
 
+router.get("/:id/download", controller.download);
+
 module.exports = router;

@@ -35,10 +35,10 @@ model Folder {
 model File {
   id        Int      @id @default(autoincrement())
   name      String
-  filename  String
   mimetype  String
   size      Int
-  path      String
+  publicId  String
+  url       String
   createdAt DateTime @default(now())
 
   folder   Folder @relation(fields: [folderId], references: [id])

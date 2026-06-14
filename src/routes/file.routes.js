@@ -1,15 +1,13 @@
 const { Router } = require("express");
 const { isAuthenticated } = require("../middleware/auth");
-const multer = require("multer");
-const storage = multer.memoryStorage();
-const upload = multer({ storage: storage });
+const { handleUpload } = require("../middleware/upload");
 
 const controller = require("../controllers/file.controller");
 const router = Router();
 
 router.use(isAuthenticated);
 
-router.post("/upload/:folderId", upload.single("file"), controller.upload);
+router.post("/upload/:folderId", handleUpload, controller.upload);
 
 router.get("/:id", controller.show);
 

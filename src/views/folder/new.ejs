@@ -7,9 +7,15 @@
   </head>
   <body>
     <h1>New folder</h1>
+    <%- include("../partials/errors") %>
     <form action="/folders" method="POST">
-      <label for="name">Name</label>
-      <input type="text" name="name" id="name" />
+      <label for="name">Folder name</label>
+      <input
+        type="text"
+        name="name"
+        id="name"
+        value="<%= locals.input?.name || '' %>"
+      />
       <button type="submit">Create</button>
     </form>
   </body>

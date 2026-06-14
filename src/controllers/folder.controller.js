@@ -1,4 +1,5 @@
 const folderRepository = require("../repositories/folder.repository");
+const { matchedData, validationResult } = require("express-validator");
 
 exports.index = async (req, res) => {
   const folders = await folderRepository.findAllByUserId(req.user.id);
@@ -10,8 +11,17 @@ exports.new = async (req, res) => {
 };
 
 exports.create = async (req, res) => {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(400).render("folder/new", {
+      errors: errors.array(),
+      input: req.body,
+    });
+  }
+
+  const { name } = matchedData(req);
   const folder = await folderRepository.create({
-    name: req.body.name,
+    name,
     userId: req.user.id,
   });
 
@@ -31,9 +41,19 @@ exports.edit = async (req, res) => {
 };
 
 exports.update = async (req, res) => {
-  await folderRepository.update(Number(req.params.id), {
-    name: req.body.name,
-  });
+  const folder = await folderRepository.findById(Number(req.params.id));
+
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(400).render("folder/edit", {
+      folder,
+      errors: errors.array(),
+      input: req.body,
+    });
+  }
+
+  const { name } = matchedData(req);
+  await folderRepository.update(folder.id, { name });
 
   res.redirect(`/folders`);
 };

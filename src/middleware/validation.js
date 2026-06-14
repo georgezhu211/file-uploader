@@ -46,4 +46,18 @@ const validateLogin = [
   body("password").notEmpty().withMessage("Password is required"),
 ];
 
-module.exports = { validateSignup, validateLogin, handleValidationErrors };
+const validateFolder = [
+  body("name")
+    .trim()
+    .notEmpty()
+    .withMessage("Folder name is required")
+    .isLength({ max: 50 })
+    .withMessage("Folder name must be at most 50 characters"),
+];
+
+module.exports = {
+  validateSignup,
+  validateLogin,
+  validateFolder,
+  handleValidationErrors,
+};

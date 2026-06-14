@@ -7,8 +7,14 @@
   </head>
   <body>
     <h1>Rename folder</h1>
+    <%- include("../partials/errors") %>
     <form action="/folders/<%= folder.id %>?_method=PUT" method="POST">
-      <input type="text" name="name" id="name" value="<%= folder.name %>" />
+      <input
+        type="text"
+        name="name"
+        id="name"
+        value="<%= locals.input?.name || folder.name %>"
+      />
       <button type="submit">Rename</button>
     </form>
   </body>

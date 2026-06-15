@@ -1,13 +1,11 @@
 const https = require("https");
 const fileRepository = require("../repositories/file.repository");
-const folderRepository = require("../repositories/folder.repository");
 const cloudinary = require("../config/cloudinary");
 
 exports.upload = async (req, res) => {
-  const folderId = req.params.folderId;
+  const folder = req.resource;
 
   if (req.uploadError || !req.file) {
-    const folder = await folderRepository.findById(folderId);
     return res.status(400).render("folder/show", {
       folder,
       errors: [{ msg: req.uploadError || "Please select a file to upload" }],
@@ -24,26 +22,24 @@ exports.upload = async (req, res) => {
     },
   );
 
-  const file = await fileRepository.create({
+  await fileRepository.create({
     name: originalname,
     mimetype,
     size,
     publicId: result.public_id,
     url: result.secure_url,
-    folderId,
+    folderId: folder.id,
   });
 
-  res.redirect(`/folders/${folderId}`);
+  res.redirect(`/folders/${folder.id}`);
 };
 
 exports.show = async (req, res) => {
-  const file = await fileRepository.findById(req.params.id);
-
-  res.render("file/show", { file });
+  res.render("file/show", { file: req.resource });
 };
 
 exports.download = async (req, res, next) => {
-  const file = await fileRepository.findById(req.params.id);
+  const file = req.resource;
 
   https
     .get(file.url, (fileStream) => {

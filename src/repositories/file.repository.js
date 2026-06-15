@@ -7,7 +7,10 @@ exports.create = async (data) => {
 };
 
 exports.findById = async (id) => {
-  const file = await prisma.file.findUnique({ where: { id } });
+  const file = await prisma.file.findUnique({
+    where: { id },
+    include: { folder: true },
+  });
 
   return file;
 };

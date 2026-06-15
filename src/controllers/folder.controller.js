@@ -29,19 +29,15 @@ exports.create = async (req, res) => {
 };
 
 exports.show = async (req, res) => {
-  const folder = await folderRepository.findById(req.params.id);
-
-  res.render("folder/show", { folder });
+  res.render("folder/show", { folder: req.resource });
 };
 
 exports.edit = async (req, res) => {
-  const folder = await folderRepository.findById(req.params.id);
-
-  res.render("folder/edit", { folder });
+  res.render("folder/edit", { folder: req.resource });
 };
 
 exports.update = async (req, res) => {
-  const folder = await folderRepository.findById(req.params.id);
+  const folder = req.resource;
 
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
@@ -59,7 +55,7 @@ exports.update = async (req, res) => {
 };
 
 exports.delete = async (req, res) => {
-  await folderRepository.delete(req.params.id);
+  await folderRepository.delete(req.resource.id);
 
   res.redirect(`/folders`);
 };

@@ -2,15 +2,21 @@ const { Router } = require("express");
 const { isAuthenticated } = require("../middleware/auth");
 const { handleUpload } = require("../middleware/upload");
 
+const { validateIdParam } = require("../middleware/validation");
 const controller = require("../controllers/file.controller");
 const router = Router();
 
 router.use(isAuthenticated);
 
-router.post("/upload/:folderId", handleUpload, controller.upload);
+router.post(
+  "/upload/:folderId",
+  validateIdParam("folderId"),
+  handleUpload,
+  controller.upload,
+);
 
-router.get("/:id", controller.show);
+router.get("/:id", validateIdParam(), controller.show);
 
-router.get("/:id/download", controller.download);
+router.get("/:id/download", validateIdParam(), controller.download);
 
 module.exports = router;

@@ -2,7 +2,7 @@ const { Router } = require("express");
 const { isAuthenticated } = require("../middleware/auth");
 
 const controller = require("../controllers/folder.controller");
-const { validateFolder } = require("../middleware/validation");
+const { validateFolder, validateIdParam } = require("../middleware/validation");
 const router = Router();
 
 router.use(isAuthenticated);
@@ -13,12 +13,12 @@ router.get("/new", controller.new);
 
 router.post("/", validateFolder, controller.create);
 
-router.get("/:id", controller.show);
+router.get("/:id", validateIdParam(), controller.show);
 
-router.get("/:id/edit", controller.edit);
+router.get("/:id/edit", validateIdParam(), controller.edit);
 
-router.put("/:id", validateFolder, controller.update);
+router.put("/:id", validateIdParam(), validateFolder, controller.update);
 
-router.delete("/:id", controller.delete);
+router.delete("/:id", validateIdParam(), controller.delete);
 
 module.exports = router;

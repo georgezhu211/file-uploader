@@ -46,7 +46,8 @@ app.use("/files", fileRoutes);
 
 app.use((err, req, res, next) => {
   console.error(err);
-  res.status(500).send(err.message);
+  const status = err.status || 500;
+  res.status(status).send(err.message);
 });
 
 const PORT = 3000;

@@ -1,5 +1,6 @@
-const { body, validationResult } = require("express-validator");
+const { body, param, validationResult } = require("express-validator");
 const userRepository = require("../repositories/user.repository");
+const BadRequestError = require("../errors/BadRequestError");
 
 const handleValidationErrors = (view) => (req, res, next) => {
   const errors = validationResult(req);
@@ -55,9 +56,26 @@ const validateFolder = [
     .withMessage("Folder name must be at most 50 characters"),
 ];
 
+const validateIdParam = (paramName = "id") => [
+  param(paramName)
+    .isInt({ min: 1 })
+    .withMessage(`${paramName} must be a positive integer`)
+    .toInt(),
+  (req, res, next) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return next(
+        new BadRequestError(`Invalid ${paramName}: must be a positive integer`),
+      );
+    }
+    next();
+  },
+];
+
 module.exports = {
   validateSignup,
   validateLogin,
   validateFolder,
+  validateIdParam,
   handleValidationErrors,
 };

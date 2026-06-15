@@ -4,7 +4,7 @@ const folderRepository = require("../repositories/folder.repository");
 const cloudinary = require("../config/cloudinary");
 
 exports.upload = async (req, res) => {
-  const folderId = Number(req.params.folderId);
+  const folderId = req.params.folderId;
 
   if (req.uploadError || !req.file) {
     const folder = await folderRepository.findById(folderId);
@@ -37,13 +37,13 @@ exports.upload = async (req, res) => {
 };
 
 exports.show = async (req, res) => {
-  const file = await fileRepository.findById(Number(req.params.id));
+  const file = await fileRepository.findById(req.params.id);
 
   res.render("file/show", { file });
 };
 
 exports.download = async (req, res, next) => {
-  const file = await fileRepository.findById(Number(req.params.id));
+  const file = await fileRepository.findById(req.params.id);
 
   https
     .get(file.url, (fileStream) => {

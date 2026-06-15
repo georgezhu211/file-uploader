@@ -1,4 +1,5 @@
 const folderRepository = require("../repositories/folder.repository");
+const cloudinary = require("../config/cloudinary");
 const { matchedData, validationResult } = require("express-validator");
 
 exports.index = async (req, res) => {
@@ -55,7 +56,17 @@ exports.update = async (req, res) => {
 };
 
 exports.delete = async (req, res) => {
-  await folderRepository.delete(req.resource.id);
+  const folder = req.resource;
+
+  await Promise.allSettled(
+    folder.files.map((file) =>
+      cloudinary.uploader.destroy(file.publicId, {
+        resource_type: file.resourceType,
+      }),
+    ),
+  );
+
+  await folderRepository.delete(folder.id);
 
   res.redirect(`/folders`);
 };

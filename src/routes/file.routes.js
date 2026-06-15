@@ -19,6 +19,8 @@ router.post(
 
 router.get("/:id", validateIdParam(), findFile, controller.show);
 
+router.delete("/:id", validateIdParam(), findFile, controller.delete);
+
 router.get("/:id/download", validateIdParam(), findFile, controller.download);
 
 module.exports = router;

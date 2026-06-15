@@ -14,3 +14,9 @@ exports.findById = async (id) => {
 
   return file;
 };
+
+exports.delete = async (id) => {
+  const file = await prisma.file.delete({ where: { id } });
+
+  return file;
+};

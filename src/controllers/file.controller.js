@@ -28,6 +28,7 @@ exports.upload = async (req, res) => {
     size,
     publicId: result.public_id,
     url: result.secure_url,
+    resourceType: result.resource_type,
     folderId: folder.id,
   });
 
@@ -36,6 +37,20 @@ exports.upload = async (req, res) => {
 
 exports.show = async (req, res) => {
   res.render("file/show", { file: req.resource });
+};
+
+exports.delete = async (req, res) => {
+  const result = await cloudinary.uploader.destroy(req.resource.publicId, {
+    resource_type: req.resource.resourceType,
+  });
+
+  if (result.result !== "ok") {
+    throw new Error("Failed to delete file from Cloudinary");
+  }
+
+  await fileRepository.delete(req.resource.id);
+
+  res.redirect(`/folders/${req.resource.folderId}`);
 };
 
 exports.download = async (req, res, next) => {

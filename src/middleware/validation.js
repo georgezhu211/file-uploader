@@ -81,11 +81,23 @@ const validateIdParam = (paramName = "id") => [
   },
 ];
 
+const validateTokenParam = (paramName = "token") => [
+  param(paramName).isUUID().withMessage("Invalid share link"),
+  (req, res, next) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return next(new BadRequestError("Invalid share link"));
+    }
+    next();
+  },
+];
+
 module.exports = {
   validateSignup,
   validateLogin,
   validateFolder,
   validateShare,
   validateIdParam,
+  validateTokenParam,
   handleValidationErrors,
 };

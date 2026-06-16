@@ -10,7 +10,10 @@
     <%- include("../partials/errors") %>
     <p>ID: <%= folder.id %>, Name: <%= folder.name %></p>
 
-    <%- include("_files") %> <%- include("_shares") %>
+    <!-- Files -->
+    <%- include("_files") %>
+    <!-- Shares -->
+    <%- include("_shares") %>
 
     <form
       action="/folders/<%= folder.id %>?_method=DELETE"

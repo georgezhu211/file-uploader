@@ -7,3 +7,12 @@ exports.create = async ({ expiresAt, folderId }) => {
 
   return share;
 };
+
+exports.findByToken = async (token) => {
+  const share = await prisma.folderShare.findFirst({
+    where: { token, expiresAt: { gt: new Date() } },
+    include: { folder: { include: { files: true } } },
+  });
+
+  return share;
+};

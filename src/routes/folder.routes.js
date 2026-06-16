@@ -1,8 +1,10 @@
 const { Router } = require("express");
 const { isAuthenticated } = require("../middleware/auth");
+const { handleUpload } = require("../middleware/upload");
 const { findFolder } = require("../middleware/resource");
 
 const controller = require("../controllers/folder.controller");
+const fileController = require("../controllers/file.controller");
 const { validateFolder, validateIdParam } = require("../middleware/validation");
 const router = Router();
 
@@ -27,5 +29,13 @@ router.put(
 );
 
 router.delete("/:id", validateIdParam(), findFolder, controller.delete);
+
+router.post(
+  "/:id/files",
+  validateIdParam(),
+  findFolder,
+  handleUpload,
+  fileController.upload,
+);
 
 module.exports = router;

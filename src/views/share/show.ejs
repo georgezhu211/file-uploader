@@ -1,26 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Shared Folder: <%= share.folder.name %></title>
-  </head>
-  <body>
-    <h1><%= share.folder.name %></h1>
-    <p>Shared folder &mdash; expires <%= share.expiresAt.toLocaleDateString() %></p>
+<h1><%= share.folder.name %></h1>
+<p>Shared folder &mdash; expires <%= share.expiresAt.toLocaleDateString() %></p>
 
-    <h2>Files</h2>
-    <% if (share.folder.files.length > 0) { %>
-      <ul>
-        <% for (const file of share.folder.files) { %>
-          <li>
-            <a href="<%= file.url %>" target="_blank"><%= file.name %></a>
-            (<%= file.mimetype %>, <%= file.size %> bytes)
-          </li>
-        <% } %>
-      </ul>
-    <% } else { %>
-      <p>No files in this folder.</p>
+<h2>Files</h2>
+<% if (share.folder.files.length > 0) { %>
+  <ul>
+    <% for (const file of share.folder.files) { %>
+      <li>
+        <a href="<%= file.url %>" target="_blank"><%= file.name %></a>
+        (<%= file.mimetype %>, <%= file.size %> bytes)
+      </li>
     <% } %>
-  </body>
-</html>
+  </ul>
+<% } else { %>
+  <p>No files in this folder.</p>
+<% } %>

@@ -7,6 +7,7 @@ const passport = require("./config/passport");
 const { PrismaSessionStore } = require("@quixo3/prisma-session-store");
 const { prisma } = require("./db/prisma");
 const methodOverride = require("method-override");
+const expressLayouts = require("express-ejs-layouts");
 
 const authRoutes = require("./routes/auth.routes");
 const folderRoutes = require("./routes/folder.routes");
@@ -17,6 +18,8 @@ const app = express();
 
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
+app.use(expressLayouts);
+app.set("layout", "layout");
 
 app.use(express.urlencoded({ extended: false }));
 app.use(methodOverride("_method"));

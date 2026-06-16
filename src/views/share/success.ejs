@@ -1,23 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Share Link Created</title>
-  </head>
-  <body>
-    <h1>Share Link Created</h1>
-    <p>Your folder share link is ready:</p>
-    <p>
-      <a href="<%= shareUrl %>"><%= shareUrl %></a>
-      <button
-        type="button"
-        onclick="navigator.clipboard.writeText('<%= shareUrl %>')"
-      >
-        Copy
-      </button>
-    </p>
-    <p>Expires: <%= expiresAt.toLocaleDateString() %></p>
-    <a href="/folders/<%= folderId %>">Back to folder</a>
-  </body>
-</html>
+<h1>Share Link Created</h1>
+<p>Your folder share link is ready:</p>
+<p>
+  <a href="<%= shareUrl %>"><%= shareUrl %></a>
+  <button
+    type="button"
+    onclick="navigator.clipboard.writeText('<%= shareUrl %>')"
+  >
+    Copy
+  </button>
+</p>
+<p>Expires: <%= expiresAt.toLocaleDateString() %></p>
+<a href="/folders/<%= folderId %>">Back to folder</a>

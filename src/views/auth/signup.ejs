@@ -1,26 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Sign Up</title>
-  </head>
-  <body>
-    <h1>Sign Up</h1>
-    <%- include("../partials/errors") %>
-    <form action="/auth/signup" method="POST">
-      <label for="username">Username</label>
-      <input
-        id="username"
-        name="username"
-        type="text"
-        value="<%= locals.input?.username || '' %>"
-      />
-      <label for="password">Password</label>
-      <input id="password" name="password" type="password" />
-      <label for="confirmPassword">Confirm password</label>
-      <input id="confirmPassword" name="confirmPassword" type="password" />
-      <button type="submit">Sign Up</button>
-    </form>
-  </body>
-</html>
+<h1>Sign Up</h1>
+<%- include("../partials/errors") %>
+<form action="/auth/signup" method="POST">
+  <label for="username">Username</label>
+  <input
+    id="username"
+    name="username"
+    type="text"
+    value="<%= locals.input?.username || '' %>"
+  />
+  <label for="password">Password</label>
+  <input id="password" name="password" type="password" />
+  <label for="confirmPassword">Confirm password</label>
+  <input id="confirmPassword" name="confirmPassword" type="password" />
+  <button type="submit">Sign Up</button>
+</form>

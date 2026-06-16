@@ -1,4 +1,3 @@
-const https = require("https");
 const fileRepository = require("../repositories/file.repository");
 const cloudinary = require("../config/cloudinary");
 
@@ -53,17 +52,13 @@ exports.delete = async (req, res) => {
   res.redirect(`/folders/${req.resource.folderId}`);
 };
 
-exports.download = async (req, res, next) => {
+exports.download = async (req, res) => {
   const file = req.resource;
 
-  https
-    .get(file.url, (fileStream) => {
-      res.setHeader(
-        "Content-Disposition",
-        `attachment; filename="${file.name}"`,
-      );
-      res.setHeader("Content-Type", file.mimetype);
-      fileStream.pipe(res);
-    })
-    .on("error", next);
+  const url = cloudinary.url(file.publicId, {
+    resource_type: file.resourceType,
+    flags: "attachment",
+  });
+
+  res.redirect(url);
 };

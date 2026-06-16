@@ -30,6 +30,18 @@
       <button type="submit">Upload</button>
     </form>
     <h2>Share Folder</h2>
+    <% if (folder.shares.length > 0) { %>
+      <h3>Active Share Links</h3>
+      <ul>
+        <% for (const share of folder.shares) { %>
+          <li>
+            <code><%= share.token %></code>
+            &mdash; expires <%= share.expiresAt.toLocaleDateString() %>
+            <button type="button" onclick="navigator.clipboard.writeText(location.origin + '/share/<%= share.token %>')">Copy</button>
+          </li>
+        <% } %>
+      </ul>
+    <% } %>
     <form action="/folders/<%= folder.id %>/share" method="POST">
       <label for="duration">Expires in (days)</label>
       <input id="duration" name="duration" type="number" min="1" max="30" value="7" required />

@@ -29,7 +29,17 @@ model Folder {
   user   User @relation(fields: [userId], references: [id])
   userId Int
 
-  files File[]
+  files  File[]
+  shares FolderShare[]
+}
+
+model FolderShare {
+  token     String   @id @default(uuid())
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+
+  folder   Folder @relation(fields: [folderId], references: [id], onDelete: Cascade)
+  folderId Int
 }
 
 model File {

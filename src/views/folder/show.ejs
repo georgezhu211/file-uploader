@@ -9,44 +9,8 @@
     <h1>Folder</h1>
     <%- include("../partials/errors") %>
     <p>ID: <%= folder.id %>, Name: <%= folder.name %></p>
-    <h2>Files</h2>
-    <% if (folder.files.length > 0) { %>
-      <ul>
-        <% for (const file of folder.files) { %>
-          <li><a href="/files/<%= file.id %>"><%= file.name %></a> (<%= file.mimetype %>, <%= file.size %> bytes)</li>
-        <% } %>
-      </ul>
-    <% } else { %>
-      <p>No files yet.</p>
-    <% } %>
 
-    <form
-      action="/folders/<%= folder.id %>/files"
-      method="POST"
-      enctype="multipart/form-data"
-    >
-      <label for="file">File</label>
-      <input id="file" name="file" type="file" />
-      <button type="submit">Upload</button>
-    </form>
-    <h2>Share Folder</h2>
-    <% if (folder.shares.length > 0) { %>
-      <h3>Active Share Links</h3>
-      <ul>
-        <% for (const share of folder.shares) { %>
-          <li>
-            <code><%= share.token %></code>
-            &mdash; expires <%= share.expiresAt.toLocaleDateString() %>
-            <button type="button" onclick="navigator.clipboard.writeText(location.origin + '/share/<%= share.token %>')">Copy</button>
-          </li>
-        <% } %>
-      </ul>
-    <% } %>
-    <form action="/folders/<%= folder.id %>/share" method="POST">
-      <label for="duration">Expires in (days)</label>
-      <input id="duration" name="duration" type="number" min="1" max="30" value="7" required />
-      <button type="submit">Generate Share Link</button>
-    </form>
+    <%- include("_files") %> <%- include("_shares") %>
 
     <form
       action="/folders/<%= folder.id %>?_method=DELETE"

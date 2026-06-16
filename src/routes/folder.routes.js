@@ -3,32 +3,37 @@ const { isAuthenticated } = require("../middleware/auth");
 const { handleUpload } = require("../middleware/upload");
 const { findFolder } = require("../middleware/resource");
 
-const controller = require("../controllers/folder.controller");
+const shareController = require("../controllers/share.controller");
+const folderController = require("../controllers/folder.controller");
 const fileController = require("../controllers/file.controller");
-const { validateFolder, validateIdParam } = require("../middleware/validation");
+const {
+  validateFolder,
+  validateShare,
+  validateIdParam,
+} = require("../middleware/validation");
 const router = Router();
 
 router.use(isAuthenticated);
 
-router.get("/", controller.index);
+router.get("/", folderController.index);
 
-router.get("/new", controller.new);
+router.get("/new", folderController.new);
 
-router.post("/", validateFolder, controller.create);
+router.post("/", validateFolder, folderController.create);
 
-router.get("/:id", validateIdParam(), findFolder, controller.show);
+router.get("/:id", validateIdParam(), findFolder, folderController.show);
 
-router.get("/:id/edit", validateIdParam(), findFolder, controller.edit);
+router.get("/:id/edit", validateIdParam(), findFolder, folderController.edit);
 
 router.put(
   "/:id",
   validateIdParam(),
   findFolder,
   validateFolder,
-  controller.update,
+  folderController.update,
 );
 
-router.delete("/:id", validateIdParam(), findFolder, controller.delete);
+router.delete("/:id", validateIdParam(), findFolder, folderController.delete);
 
 router.post(
   "/:id/files",
@@ -36,6 +41,14 @@ router.post(
   findFolder,
   handleUpload,
   fileController.upload,
+);
+
+router.post(
+  "/:id/share",
+  validateIdParam(),
+  findFolder,
+  validateShare,
+  shareController.create,
 );
 
 module.exports = router;

@@ -56,6 +56,15 @@ const validateFolder = [
     .withMessage("Folder name must be at most 50 characters"),
 ];
 
+const validateShare = [
+  body("duration")
+    .notEmpty()
+    .withMessage("Duration is required")
+    .isInt({ min: 1, max: 30 })
+    .withMessage("Duration must be between 1 and 30 days")
+    .toInt(),
+];
+
 const validateIdParam = (paramName = "id") => [
   param(paramName)
     .isInt({ min: 1 })
@@ -76,6 +85,7 @@ module.exports = {
   validateSignup,
   validateLogin,
   validateFolder,
+  validateShare,
   validateIdParam,
   handleValidationErrors,
 };

@@ -29,6 +29,13 @@
       <input id="file" name="file" type="file" />
       <button type="submit">Upload</button>
     </form>
+    <h2>Share Folder</h2>
+    <form action="/folders/<%= folder.id %>/share" method="POST">
+      <label for="duration">Expires in (days)</label>
+      <input id="duration" name="duration" type="number" min="1" max="30" value="7" required />
+      <button type="submit">Generate Share Link</button>
+    </form>
+
     <form
       action="/folders/<%= folder.id %>?_method=DELETE"
       method="POST"

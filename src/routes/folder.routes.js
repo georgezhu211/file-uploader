@@ -10,6 +10,7 @@ const {
   validateFolder,
   validateShare,
   validateIdParam,
+  validateTokenParam,
 } = require("../middleware/validation");
 const router = Router();
 
@@ -49,6 +50,14 @@ router.post(
   findFolder,
   validateShare,
   shareController.create,
+);
+
+router.delete(
+  "/:id/share/:token",
+  validateIdParam(),
+  validateTokenParam(),
+  findFolder,
+  shareController.destroy,
 );
 
 module.exports = router;

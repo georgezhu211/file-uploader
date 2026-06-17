@@ -7,6 +7,9 @@
         <code><%= share.token %></code>
         &mdash; expires <%= share.expiresAt.toLocaleDateString() %>
         <button type="button" onclick="navigator.clipboard.writeText(location.origin + '/share/<%= share.token %>')">Copy</button>
+        <form action="/folders/<%= folder.id %>/share/<%= share.token %>?_method=DELETE" method="POST" style="display:inline;" onsubmit="return confirm('Are you sure you want to delete this share link?')">
+          <button type="submit">Delete</button>
+        </form>
       </li>
     <% } %>
   </ul>

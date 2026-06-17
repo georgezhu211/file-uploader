@@ -16,3 +16,9 @@ exports.findByToken = async (token) => {
 
   return share;
 };
+
+exports.deleteByToken = async (token, folderId) => {
+  return prisma.folderShare.deleteMany({
+    where: { token, folderId },
+  });
+};

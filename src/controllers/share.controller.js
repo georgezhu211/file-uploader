@@ -35,3 +35,12 @@ exports.show = async (req, res) => {
 
   res.render("share/show", { share });
 };
+
+exports.destroy = async (req, res) => {
+  const folder = req.resource;
+  const { token } = req.params;
+
+  await shareRepository.deleteByToken(token, folder.id);
+
+  res.redirect(`/folders/${folder.id}`);
+};

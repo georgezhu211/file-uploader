@@ -1,3 +1,8 @@
+<nav aria-label="Breadcrumb">
+  <a href="/folders">My Drive</a> &gt;
+  <a href="/folders/<%= file.folder.id %>"><%= file.folder.name %></a> &gt;
+  <span><%= file.name %></span>
+</nav>
 <%- include('../partials/errors') %>
 <h1><%= file.name %></h1>
 <p>Type: <%= file.mimetype %></p>
@@ -11,5 +16,3 @@
 >
   <button type="submit">Delete</button>
 </form>
-<br /><br />
-<a href="/folders/<%= file.folderId %>">← Back to folder</a>

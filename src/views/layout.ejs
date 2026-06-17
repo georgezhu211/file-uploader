@@ -6,6 +6,14 @@
     <title>File Uploader</title>
   </head>
   <body>
+    <% if (user) { %>
+      <nav>
+        <span><%= user.username %></span>
+        <form action="/auth/logout" method="POST" style="display:inline;">
+          <button type="submit">Log Out</button>
+        </form>
+      </nav>
+    <% } %>
     <%- body %>
   </body>
 </html>

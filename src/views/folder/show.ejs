@@ -1,6 +1,8 @@
-<h1>Folder</h1>
+<nav aria-label="Breadcrumb">
+  <a href="/folders">My Drive</a> &gt; <span><%= folder.name %></span>
+</nav>
+<h1><%= folder.name %></h1>
 <%- include("../partials/errors") %>
-<p>ID: <%= folder.id %>, Name: <%= folder.name %></p>
 
 <!-- Files -->
 <%- include("_files") %>

@@ -1,3 +1,8 @@
+<nav aria-label="Breadcrumb">
+  <a href="/folders">My Drive</a> &gt;
+  <a href="/folders/<%= folder.id %>"><%= folder.name %></a> &gt;
+  <span>Edit</span>
+</nav>
 <h1>Rename folder</h1>
 <%- include("../partials/errors") %>
 <form action="/folders/<%= folder.id %>?_method=PUT" method="POST">

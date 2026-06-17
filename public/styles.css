@@ -1,0 +1,217 @@
+body {
+  background: #3a6ea5;
+  margin: 0;
+  padding: 20px;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.desktop {
+  width: 100%;
+  max-width: 800px;
+}
+
+.window {
+  margin-bottom: 16px;
+}
+
+.window-body {
+  padding: 16px;
+}
+
+/* Toolbar */
+.toolbar {
+  display: flex;
+  gap: 4px;
+  padding: 4px;
+  margin-bottom: 8px;
+  flex-wrap: wrap;
+}
+
+/* File list as tree view */
+.file-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.file-list li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 8px;
+  border-bottom: 1px solid #ece9d8;
+}
+
+.file-list li:hover {
+  background: #316ac5;
+  color: #fff;
+}
+
+.file-list li:hover a {
+  color: #fff;
+}
+
+.file-list .file-icon {
+  width: 16px;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.file-list .file-name {
+  flex: 1;
+}
+
+.file-list .file-meta {
+  font-size: 11px;
+  color: #555;
+}
+
+.file-list li:hover .file-meta {
+  color: #ddd;
+}
+
+/* Breadcrumb address bar */
+.address-bar {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-bottom: 8px;
+  padding: 2px 4px;
+  background: #fff;
+  border: 1px solid #7f9db9;
+  font-size: 11px;
+}
+
+.address-bar a {
+  color: #00f;
+  text-decoration: none;
+}
+
+.address-bar a:hover {
+  text-decoration: underline;
+}
+
+.address-bar span {
+  color: #000;
+}
+
+/* Status bar */
+.status-bar {
+  margin-top: 8px;
+}
+
+/* Forms */
+.form-group {
+  margin-bottom: 8px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 2px;
+}
+
+.form-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Share links */
+.share-list {
+  list-style: none;
+  padding: 0;
+  margin: 4px 0;
+}
+
+.share-list li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 0;
+  font-size: 11px;
+  flex-wrap: wrap;
+}
+
+/* Folder grid on index */
+.folder-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  gap: 8px;
+  padding: 8px 0;
+}
+
+.folder-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 8px;
+  text-decoration: none;
+  color: #000;
+  border: 1px solid transparent;
+  word-break: break-word;
+}
+
+.folder-item:hover {
+  background: #316ac5;
+  color: #fff;
+  border: 1px dotted #000;
+}
+
+.folder-item .folder-icon {
+  font-size: 32px;
+  margin-bottom: 4px;
+}
+
+.folder-item .folder-label {
+  font-size: 11px;
+}
+
+/* Error list */
+.error-list {
+  background: #fff0f0;
+  border: 1px solid #cc0000;
+  padding: 8px;
+  margin-bottom: 8px;
+  list-style: none;
+}
+
+.error-list li {
+  color: #cc0000;
+  font-size: 11px;
+  padding: 2px 0;
+}
+
+/* Nav bar for logged-in user */
+.user-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 4px;
+  font-size: 11px;
+}
+
+/* Auth pages centering */
+.auth-window {
+  max-width: 360px;
+  margin: 60px auto 0;
+}
+
+/* Field set style */
+fieldset {
+  margin: 0 0 8px 0;
+}
+
+/* Inline actions */
+.inline-actions {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+}
+
+.inline-form {
+  display: inline;
+}

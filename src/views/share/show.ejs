@@ -1,18 +1,37 @@
-<h1><%= share.folder.name %></h1>
-<p>Shared folder &mdash; expires <%= share.expiresAt.toLocaleDateString() %></p>
+<div class="auth-window" style="max-width: 600px;">
+  <div class="window">
+    <div class="title-bar">
+      <div class="title-bar-text">Shared Folder - <%= share.folder.name %></div>
+      <div class="title-bar-controls">
+        <button aria-label="Close"></button>
+      </div>
+    </div>
+    <div class="window-body">
+      <p style="font-size: 11px;">🔗 Shared folder &mdash; expires <%= share.expiresAt.toLocaleDateString() %></p>
 
-<h2>Files</h2>
-<% if (share.folder.files.length > 0) { %>
-  <ul>
-    <% for (const file of share.folder.files) { %>
-      <li>
-        <a href="<%= file.url %>" target="_blank"><%= file.name %></a>
-        (<%= file.mimetype %>, <%= formatSize(file.size) %>)
-      </li>
-    <% } %>
-  </ul>
-<% } else { %>
-  <p>No files in this folder.</p>
-<% } %>
+      <fieldset>
+        <legend>Files</legend>
+        <% if (share.folder.files.length > 0) { %>
+          <ul class="file-list">
+            <% for (const file of share.folder.files) { %>
+              <li>
+                <span class="file-icon">📄</span>
+                <a href="<%= file.url %>" target="_blank" class="file-name"><%= file.name %></a>
+                <span class="file-meta"><%= file.mimetype %> &middot; <%= formatSize(file.size) %></span>
+              </li>
+            <% } %>
+          </ul>
+        <% } else { %>
+          <p>No files in this folder.</p>
+        <% } %>
+      </fieldset>
 
-<p>Want your own storage? <a href="/auth/signup">Sign up</a></p>
+      <br />
+      <p>Want your own storage? <a href="/auth/signup">Sign up</a></p>
+    </div>
+    <div class="status-bar">
+      <p class="status-bar-field"><%= share.folder.files.length %> file(s)</p>
+      <p class="status-bar-field">Expires: <%= share.expiresAt.toLocaleDateString() %></p>
+    </div>
+  </div>
+</div>

@@ -1,17 +1,48 @@
-<h1>Sign Up</h1>
-<%- include("../partials/errors") %>
-<form action="/auth/signup" method="POST">
-  <label for="username">Username</label>
-  <input
-    id="username"
-    name="username"
-    type="text"
-    value="<%= locals.input?.username || '' %>"
-  />
-  <label for="password">Password</label>
-  <input id="password" name="password" type="password" />
-  <label for="confirmPassword">Confirm password</label>
-  <input id="confirmPassword" name="confirmPassword" type="password" />
-  <button type="submit">Sign Up</button>
-</form>
-<p>Already have an account? <a href="/auth/login">Log in</a></p>
+<div class="auth-window">
+  <div class="window">
+    <div class="title-bar">
+      <div class="title-bar-text">Sign Up - File Uploader</div>
+      <div class="title-bar-controls">
+        <button aria-label="Close"></button>
+      </div>
+    </div>
+    <div class="window-body">
+      <%- include("../partials/errors") %>
+      <form action="/auth/signup" method="POST">
+        <div class="form-group">
+          <label for="username">Username</label>
+          <input
+            id="username"
+            name="username"
+            type="text"
+            value="<%= locals.input?.username || '' %>"
+            style="width: 100%"
+          />
+        </div>
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input
+            id="password"
+            name="password"
+            type="password"
+            style="width: 100%"
+          />
+        </div>
+        <div class="form-group">
+          <label for="confirmPassword">Confirm password</label>
+          <input
+            id="confirmPassword"
+            name="confirmPassword"
+            type="password"
+            style="width: 100%"
+          />
+        </div>
+        <div class="form-row">
+          <button type="submit">Sign Up</button>
+        </div>
+      </form>
+      <br />
+      <p>Already have an account? <a href="/auth/login">Log in</a></p>
+    </div>
+  </div>
+</div>

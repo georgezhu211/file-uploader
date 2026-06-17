@@ -1,13 +1,27 @@
-<h1>Share Link Created</h1>
-<p>Your folder share link is ready:</p>
-<p>
-  <a href="<%= shareUrl %>"><%= shareUrl %></a>
-  <button
-    type="button"
-    onclick="navigator.clipboard.writeText('<%= shareUrl %>')"
-  >
-    Copy
+<fieldset>
+  <legend>Share Link Created ✓</legend>
+  <p>Your folder share link is ready:</p>
+  <div class="form-row">
+    <input
+      type="text"
+      value="<%= shareUrl %>"
+      readonly
+      style="flex: 1"
+      onclick="this.select()"
+    />
+    <button
+      type="button"
+      onclick="navigator.clipboard.writeText('<%= shareUrl %>')"
+    >
+      📋 Copy
+    </button>
+  </div>
+  <br />
+  <p style="font-size: 11px">Expires: <%= expiresAt.toLocaleDateString() %></p>
+</fieldset>
+
+<div class="form-row">
+  <button onclick="location.href = '/folders/<%= folderId %>'">
+    ⬅ Back to folder
   </button>
-</p>
-<p>Expires: <%= expiresAt.toLocaleDateString() %></p>
-<a href="/folders/<%= folderId %>">Back to folder</a>
+</div>

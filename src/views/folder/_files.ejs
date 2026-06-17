@@ -1,20 +1,28 @@
-<h2>Files</h2>
-<% if (folder.files.length > 0) { %>
-  <ul>
-    <% for (const file of folder.files) { %>
-      <li><a href="/files/<%= file.id %>"><%= file.name %></a> (<%= file.mimetype %>, <%= formatSize(file.size) %>)</li>
-    <% } %>
-  </ul>
-<% } else { %>
-  <p>No files yet.</p>
-<% } %>
+<fieldset>
+  <legend>Files</legend>
+  <% if (folder.files.length > 0) { %>
+    <ul class="file-list">
+      <% for (const file of folder.files) { %>
+        <li>
+          <span class="file-icon">📄</span>
+          <a href="/files/<%= file.id %>" class="file-name"><%= file.name %></a>
+          <span class="file-meta"><%= file.mimetype %> &middot; <%= formatSize(file.size) %></span>
+        </li>
+      <% } %>
+    </ul>
+  <% } else { %>
+    <p>No files yet. Upload one below.</p>
+  <% } %>
 
-<form
-  action="/folders/<%= folder.id %>/files"
-  method="POST"
-  enctype="multipart/form-data"
->
-  <label for="file">File</label>
-  <input id="file" name="file" type="file" />
-  <button type="submit">Upload</button>
-</form>
+  <br />
+  <form
+    action="/folders/<%= folder.id %>/files"
+    method="POST"
+    enctype="multipart/form-data"
+  >
+    <div class="form-row">
+      <input id="file" name="file" type="file" />
+      <button type="submit">Upload</button>
+    </div>
+  </form>
+</fieldset>

@@ -1,15 +1,25 @@
-<h1>My Drive</h1>
-<a href="/folders/new">New Folder</a>
+<div class="toolbar">
+  <button onclick="location.href='/folders/new'">📁 New Folder</button>
+</div>
+
+<div class="address-bar">
+  <span>📁</span>
+  <span>My Drive</span>
+</div>
+
 <% if (folders.length > 0) { %>
-<ul>
-  <% for (const folder of folders) { %>
-    <li>
-      <%= folder.name %>
-      <a href="/folders/<%= folder.id %>">View</a>
-      <a href="/folders/<%= folder.id %>/edit">Edit</a>
-    </li>
-  <% } %>
-</ul>
+  <div class="folder-grid">
+    <% for (const folder of folders) { %>
+      <a href="/folders/<%= folder.id %>" class="folder-item">
+        <span class="folder-icon">📁</span>
+        <span class="folder-label"><%= folder.name %></span>
+      </a>
+    <% } %>
+  </div>
 <% } else { %>
-<p>No folders yet. Create one to get started.</p>
+  <p>No folders yet. Click "New Folder" to get started.</p>
 <% } %>
+
+<div class="status-bar">
+  <p class="status-bar-field"><%= folders.length %> object(s)</p>
+</div>

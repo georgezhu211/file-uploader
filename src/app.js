@@ -60,10 +60,33 @@ app.use("/folders", folderRoutes);
 app.use("/files", fileRoutes);
 app.use("/share", shareRoutes);
 
+app.use((req, res) => {
+  res.status(404).render("error/error", {
+    layout: false,
+    status: 404,
+    title: "Page Not Found",
+    message:
+      "The page you requested does not exist or has been moved. Check the address and try again.",
+  });
+});
+
 app.use((err, req, res, next) => {
   console.error(err);
   const status = err.status || 500;
-  res.status(status).send(err.message);
+  const title =
+    status === 400
+      ? "Bad Request"
+      : status === 403
+        ? "Forbidden"
+        : status === 404
+          ? "Not Found"
+          : "Internal Server Error";
+  res.status(status).render("error/error", {
+    layout: false,
+    status,
+    title,
+    message: err.message || "An unexpected error occurred.",
+  });
 });
 
 const PORT = process.env.PORT || 3000;

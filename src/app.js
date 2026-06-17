@@ -65,7 +65,7 @@ app.use((err, req, res, next) => {
   res.status(status).send(err.message);
 });
 
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 app.listen(PORT, (error) => {
   if (error) {
     throw error;

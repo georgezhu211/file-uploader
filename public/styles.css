@@ -215,3 +215,149 @@ fieldset {
 .inline-form {
   display: inline;
 }
+
+/* Taskbar */
+body {
+  padding-bottom: 40px;
+}
+
+.taskbar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 36px;
+  background: linear-gradient(
+    180deg,
+    #3168d5 0%,
+    #1941a5 3%,
+    #2b5cd7 6%,
+    #2450ce 10%,
+    #1941a5 12%,
+    #1941a5 88%,
+    #1941a5 91%,
+    #1d47b4 94%,
+    #2e5fdc 97%,
+    #3a70e8 100%
+  );
+  display: flex;
+  align-items: center;
+  padding: 0 2px;
+  z-index: 9999;
+  border-top: 1px solid #0c3299;
+  box-shadow: 0 -1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.taskbar-start {
+  flex-shrink: 0;
+}
+
+.start-button {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 12px;
+  height: 30px;
+  border: none;
+  border-radius: 0 8px 8px 0;
+  background: linear-gradient(
+    180deg,
+    #3b9c3f 0%,
+    #28862c 50%,
+    #1a7a1e 51%,
+    #1c8e20 100%
+  );
+  color: #fff;
+  font-size: 13px;
+  font-weight: bold;
+  cursor: pointer;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.4);
+  letter-spacing: 0.5px;
+}
+
+.start-button:hover {
+  background: linear-gradient(
+    180deg,
+    #4aad4e 0%,
+    #35993a 50%,
+    #28892c 51%,
+    #2a9e2e 100%
+  );
+}
+
+.start-button:active {
+  background: linear-gradient(
+    180deg,
+    #2a8a2e 0%,
+    #1f751f 50%,
+    #136817 51%,
+    #157a19 100%
+  );
+}
+
+.start-icon {
+  width: 16px;
+  height: 16px;
+}
+
+.taskbar-items {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  padding: 0 4px;
+  overflow: hidden;
+}
+
+.taskbar button.taskbar-item {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 10px;
+  height: 26px;
+  max-width: 180px;
+  border: 1px solid transparent;
+  background: transparent;
+  color: #fff;
+  font-size: 11px;
+  cursor: pointer;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  border-radius: 2px;
+  box-shadow: none;
+}
+
+.taskbar button.taskbar-item.active {
+  background: #1c5ea5;
+  border: 1px solid #0a3870;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.4);
+  color: #fff;
+}
+
+.taskbar button.taskbar-item:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.taskbar-tray {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  padding: 0 8px;
+  height: 100%;
+  background: linear-gradient(
+    180deg,
+    #1290e8 0%,
+    #0c6ec0 50%,
+    #0856a8 51%,
+    #0c6ec0 100%
+  );
+  border-left: 1px solid #0c3299;
+}
+
+.tray-clock {
+  color: #fff;
+  font-size: 11px;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
+}

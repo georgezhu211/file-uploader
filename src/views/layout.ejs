@@ -31,5 +31,34 @@
         <%- body %>
       <% } %>
     </div>
+
+    <!-- Taskbar -->
+    <div class="taskbar">
+      <div class="taskbar-start">
+        <button class="start-button">
+          <svg class="start-icon" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+            <!-- Red - top left -->
+            <path d="M1 17 C1 17 12 10 22 8 C32 6 40 8 40 8 L40 46 C40 46 32 44 22 45 C12 46 1 50 1 50 Z" fill="#F25022"/>
+            <!-- Green - top right -->
+            <path d="M44 7 C44 7 56 3 68 1 C80 -0.5 92 1 92 1 L92 46 C92 46 80 44 68 44.5 C56 45 44 46 44 46 Z" fill="#7FBA00"/>
+            <!-- Blue - bottom left -->
+            <path d="M1 54 C1 54 12 58 22 59 C32 60 40 58 40 58 L40 96 C40 96 32 98 22 96 C12 94 1 87 1 87 Z" fill="#00A4EF"/>
+            <!-- Yellow - bottom right -->
+            <path d="M44 58 C44 58 56 59 68 59.5 C80 60 92 58 92 58 L92 103 C92 103 80 105 68 103 C56 101 44 97 44 97 Z" fill="#FFB900"/>
+          </svg>
+          Start
+        </button>
+      </div>
+      <div class="taskbar-items">
+        <% if (user) { %>
+          <button class="taskbar-item active">
+            <span>📁</span> File Uploader
+          </button>
+        <% } %>
+      </div>
+      <div class="taskbar-tray">
+        <span class="tray-clock"><%= new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) %></span>
+      </div>
+    </div>
   </body>
 </html>

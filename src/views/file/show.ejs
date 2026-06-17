@@ -6,7 +6,7 @@
 <%- include('../partials/errors') %>
 <h1><%= file.name %></h1>
 <p>Type: <%= file.mimetype %></p>
-<p>Size: <%= (file.size / 1024).toFixed(1) %> KB</p>
+<p>Size: <%= formatSize(file.size) %></p>
 <p>Uploaded: <%= new Date(file.createdAt).toLocaleString() %></p>
 <a href="/files/<%= file.id %>/download"><button>Download</button></a>
 <form

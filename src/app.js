@@ -13,6 +13,7 @@ const authRoutes = require("./routes/auth.routes");
 const folderRoutes = require("./routes/folder.routes");
 const fileRoutes = require("./routes/file.routes");
 const shareRoutes = require("./routes/share.routes");
+const { formatSize } = require("./utils/helpers");
 
 const app = express();
 
@@ -42,6 +43,7 @@ app.use(passport.session());
 
 app.use((req, res, next) => {
   res.locals.user = req.user;
+  res.locals.formatSize = formatSize;
   next();
 });
 

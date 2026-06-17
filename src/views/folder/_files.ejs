@@ -2,7 +2,7 @@
 <% if (folder.files.length > 0) { %>
   <ul>
     <% for (const file of folder.files) { %>
-      <li><a href="/files/<%= file.id %>"><%= file.name %></a> (<%= file.mimetype %>, <%= file.size %> bytes)</li>
+      <li><a href="/files/<%= file.id %>"><%= file.name %></a> (<%= file.mimetype %>, <%= formatSize(file.size) %>)</li>
     <% } %>
   </ul>
 <% } else { %>

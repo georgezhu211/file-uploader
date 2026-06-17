@@ -1,5 +1,6 @@
 body {
-  background: #3a6ea5;
+  background: url("/bliss.webp") no-repeat center center fixed;
+  background-size: cover;
   margin: 0;
   padding: 20px;
   min-height: 100vh;

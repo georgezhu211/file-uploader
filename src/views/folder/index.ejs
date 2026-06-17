@@ -1,5 +1,6 @@
 <h1>My Drive</h1>
 <a href="/folders/new">New Folder</a>
+<% if (folders.length > 0) { %>
 <ul>
   <% for (const folder of folders) { %>
     <li>
@@ -9,3 +10,6 @@
     </li>
   <% } %>
 </ul>
+<% } else { %>
+<p>No folders yet. Create one to get started.</p>
+<% } %>

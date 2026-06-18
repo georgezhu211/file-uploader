@@ -1,6 +1,7 @@
 const { Router } = require("express");
 
 const controller = require("../controllers/auth.controller");
+const { redirectIfAuthenticated } = require("../middleware/auth");
 const {
   validateSignup,
   validateLogin,
@@ -9,7 +10,7 @@ const {
 
 const router = Router();
 
-router.get("/signup", controller.getSignup);
+router.get("/signup", redirectIfAuthenticated, controller.getSignup);
 
 router.post(
   "/signup",
@@ -18,7 +19,7 @@ router.post(
   controller.postSignup,
 );
 
-router.get("/login", controller.getLogin);
+router.get("/login", redirectIfAuthenticated, controller.getLogin);
 
 router.post(
   "/login",

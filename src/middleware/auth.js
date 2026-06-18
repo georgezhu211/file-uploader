@@ -5,4 +5,11 @@ function isAuthenticated(req, res, next) {
   res.redirect("/auth/login");
 }
 
-module.exports = { isAuthenticated };
+function redirectIfAuthenticated(req, res, next) {
+  if (req.isAuthenticated()) {
+    return res.redirect("/folders");
+  }
+  next();
+}
+
+module.exports = { isAuthenticated, redirectIfAuthenticated };
